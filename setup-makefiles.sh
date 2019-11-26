@@ -19,6 +19,8 @@
 set -e
 
 export INITIAL_COPYRIGHT_YEAR=2014
+export DEVICE=hlte
+export VENDOR=samsung
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
@@ -34,35 +36,22 @@ fi
 . "$HELPER"
 
 # Initialize the helper for common device
-setup_vendor "$DEVICE_COMMON" "$VENDOR" "$CM_ROOT" true
+setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT"
 
 # Copyright headers and common guards
-write_headers "h3gduoschn hlte hltechn hltekor hltetmo"
+write_headers
 
 write_makefiles "$MY_DIR"/common-proprietary-files.txt
+for BLOB_LIST in "$MY_DIR"/device-proprietary-files*.txt; do
+    write_makefiles $BLOB_LIST
+done
 
 # Blobs for TWRP data decryption
 cat << EOF >> "$BOARDMK"
 ifeq (\$(WITH_TWRP),true)
-TARGET_RECOVERY_DEVICE_DIRS += vendor/$VENDOR/$DEVICE_COMMON/proprietary
+TARGET_RECOVERY_DEVICE_DIRS += vendor/$VENDOR/$DEVICE/proprietary
 endif
 EOF
-
-write_footers
-
-if [ ! -z $VARIANT_COPYRIGHT_YEAR ]; then
-    export INITIAL_COPYRIGHT_YEAR=$VARIANT_COPYRIGHT_YEAR
-fi
-
-# Reinitialize the helper for device
-setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT"
-
-# Copyright headers and guards
-write_headers
-
-for BLOB_LIST in "$MY_DIR"/../$DEVICE/device-proprietary-files*.txt; do
-    write_makefiles $BLOB_LIST
-done
 
 write_footers
 
