@@ -95,7 +95,6 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 TARGET_RIL_VARIANT := caf
-include $(DEVICE_PATH)/radio/single/board.mk
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
