@@ -19,7 +19,7 @@
 #include <string.h>
 #include <fcntl.h>
 
-#define LOG_TAG "PowerHAL_H_Ext"
+#define LOG_TAG "PowerHAL_LT03_Ext"
 #include <utils/Log.h>
 
 #define TOUCHKEY_POWER "/sys/class/input/input2/enabled"

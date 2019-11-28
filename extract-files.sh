@@ -18,7 +18,7 @@
 
 set -e
 
-export DEVICE=hlte
+export DEVICE=lt03lte
 export VENDOR=samsung
 
 # Load extract_utils and do some sanity checks

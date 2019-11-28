@@ -84,7 +84,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
 
 # NFC
-$(call inherit-product, device/samsung/hlte/nfc/bcm2079x/product.mk)
+$(call inherit-product, device/samsung/lt03lte/nfc/bcm2079x/product.mk)
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -130,7 +130,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/hlte/hlte-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/lt03lte/lt03lte-vendor.mk)
 
 # Common msm8974
 $(call inherit-product, device/samsung/msm8974-common/msm8974.mk)

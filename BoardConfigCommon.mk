@@ -16,13 +16,13 @@
 # inherit from common msm8974
 include device/samsung/msm8974-common/BoardConfigCommon.mk
 
-DEVICE_PATH := device/samsung/hlte
+DEVICE_PATH := device/samsung/lt03lte
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-BUILD_FINGERPRINT := samsung/hltexx/hlte:5.0/LRX21V/N9005XXSGBRI2:user/release-keys
+BUILD_FINGERPRINT := samsung/lt03ltexx/lt03lte:5.0/LRX21V/N9005XXSGBRI2:user/release-keys
 
-TARGET_OTA_ASSERT_DEVICE := hlte,hltespr,hltexx
+TARGET_OTA_ASSERT_DEVICE := lt03lte,lt03ltespr,lt03ltexx
 
 # Audio
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
@@ -31,7 +31,7 @@ AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
-BOARD_CUSTOM_BT_CONFIG := $(DEVICE_PATH)/bluetooth/vnd_hlte.txt
+BOARD_CUSTOM_BT_CONFIG := $(DEVICE_PATH)/bluetooth/vnd_lt03lte.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH_BCM := true
 
@@ -52,7 +52,7 @@ DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm8974
-TARGET_LIBINIT_MSM8974_DEFINES_FILE := device/samsung/hlte/init/init_hlte.cpp
+TARGET_LIBINIT_MSM8974_DEFINES_FILE := device/samsung/lt03lte/init/init_lt03lte.cpp
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
@@ -64,7 +64,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02900000 --tags_offset 0x02700000
 LZMA_RAMDISK_TARGETS := recovery
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
-TARGET_KERNEL_CONFIG := lineage_hlte_bcm2079x_defconfig
+TARGET_KERNEL_CONFIG := lineage_lt03lte_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8974
 
 # Legacy BLOB Support
@@ -138,4 +138,4 @@ WIFI_DRIVER_NVRAM_PATH_PARAM:= "/sys/module/dhd/parameters/nvram_path"
 WIFI_DRIVER_NVRAM_PATH      := "/vendor/etc/wifi/nvram_net.txt"
 
 # Inherit from the proprietary version
--include vendor/samsung/hlte/BoardConfigVendor.mk
+-include vendor/samsung/lt03lte/BoardConfigVendor.mk

@@ -85,18 +85,18 @@ void init_target_properties()
     std::string bootloader = GetProperty("ro.bootloader", "");
 
     if (bootloader.find("N9005") == 0) {
-        /* hltexx */
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/hltexx/hlte:5.0/LRX21V/N9005XXSGBRI2:user/release-keys");
-        property_override("ro.build.description", "hltexx-user 5.0 LRX21V N9005XXSGBRI2 release-keys");
+        /* lt03ltexx */
+        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/lt03ltexx/lt03lte:5.0/LRX21V/N9005XXSGBRI2:user/release-keys");
+        property_override("ro.build.description", "lt03ltexx-user 5.0 LRX21V N9005XXSGBRI2 release-keys");
         property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-N9005");
-        property_override_dual("ro.product.device", "ro.vendor.product.device", "hlte");
+        property_override_dual("ro.product.device", "ro.vendor.product.device", "lt03lte");
         gsm_properties("gsm");
     } else if (bootloader.find("N900P") == 0) {
-        /* hltespr - Sprint */
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/hltespr/hltespr:5.0/LRX21V/N900PVPSEPL1:user/release-keys");
-        property_override("ro.build.description", "hltespr-user 5.0 LRX21V N900PVPSEPL1 release-keys");
+        /* lt03ltespr - Sprint */
+        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/lt03ltespr/lt03ltespr:5.0/LRX21V/N900PVPSEPL1:user/release-keys");
+        property_override("ro.build.description", "lt03ltespr-user 5.0 LRX21V N900PVPSEPL1 release-keys");
         property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-N900P");
-        property_override_dual("ro.product.device", "ro.vendor.product.device", "hltespr");
+        property_override_dual("ro.product.device", "ro.vendor.product.device", "lt03ltespr");
         cdma_properties("Sprint", "310120", "8", "1", "spr");
     } else {
         gsm_properties("gsm");

@@ -19,7 +19,7 @@
 set -e
 
 export INITIAL_COPYRIGHT_YEAR=2014
-export DEVICE=hlte
+export DEVICE=lt03lte
 export VENDOR=samsung
 
 # Load extract_utils and do some sanity checks

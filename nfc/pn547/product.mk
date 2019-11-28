@@ -15,7 +15,7 @@
 #
 
 # NFC
-$(call inherit-product, device/samsung/hlte/nfc/product.mk)
+$(call inherit-product, device/samsung/lt03lte/nfc/product.mk)
 
 PRODUCT_PACKAGES += \
     android.hardware.nfc@1.0-impl \
@@ -23,5 +23,5 @@ PRODUCT_PACKAGES += \
     nfc_nci.msm8974
 
 PRODUCT_COPY_FILES += \
-    device/samsung/hlte/nfc/pn547/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
-    device/samsung/hlte/nfc/pn547/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
+    device/samsung/lt03lte/nfc/pn547/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
+    device/samsung/lt03lte/nfc/pn547/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
