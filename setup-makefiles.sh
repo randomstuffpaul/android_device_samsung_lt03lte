@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2014 The CyanogenMod Project
-# Copyright (C) 2017-2018 The LineageOS Project
+# Copyright (C) 2017-2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,33 +18,31 @@
 
 set -e
 
-export INITIAL_COPYRIGHT_YEAR=2014
-export DEVICE=lt03lte
-export VENDOR=samsung
+DEVICE=lt03lte
+VENDOR=samsung
+
+INITIAL_COPYRIGHT_YEAR=2016
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 
-CM_ROOT="$MY_DIR"/../../..
+LINEAGE_ROOT="$MY_DIR"/../../..
 
-HELPER="$CM_ROOT"/vendor/lineage/build/tools/extract_utils.sh
+HELPER="$LINEAGE_ROOT"/vendor/lineage/build/tools/extract_utils.sh
 if [ ! -f "$HELPER" ]; then
     echo "Unable to find helper script at $HELPER"
     exit 1
 fi
 . "$HELPER"
 
-# Initialize the helper for common device
-setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT"
+# Initialize the helper
+setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT"
 
-# Copyright headers and common guards
+# Copyright headers and guards
 write_headers
 
-write_makefiles "$MY_DIR"/common-proprietary-files.txt
-for BLOB_LIST in "$MY_DIR"/device-proprietary-files*.txt; do
-    write_makefiles $BLOB_LIST
-done
+write_makefiles "$MY_DIR"/proprietary-files.txt
 
 # Blobs for TWRP data decryption
 cat << EOF >> "$BOARDMK"
@@ -53,6 +51,7 @@ TARGET_RECOVERY_DEVICE_DIRS += vendor/$VENDOR/$DEVICE/proprietary
 endif
 EOF
 
+# Finish
 write_footers
 
 ./../msm8974-common/setup-makefiles.sh $@

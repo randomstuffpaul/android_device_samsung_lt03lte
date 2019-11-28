@@ -290,13 +290,14 @@ vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
 
-# Radio
+# Radio - pinned to N9005XXSGBRI2_N9005AUTGBRI1_AUT
 bin/efsks:vendor/bin/efsks
 bin/ks:vendor/bin/ks
 bin/qcks:vendor/bin/qcks
 bin/qmuxd:vendor/bin/qmuxd
 bin/rfs_access:vendor/bin/rfs_access
 bin/rmt_storage:vendor/bin/rmt_storage
+lib/libsec-ril.so:vendor/lib/libsec-ril.gsm.so|2ce78024389d3b2a7651b3fdd446d5d0431aa7a5
 vendor/lib/libril-qcril-hook-oem.so
 
 # Sensors
