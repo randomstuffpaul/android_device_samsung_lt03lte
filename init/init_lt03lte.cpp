@@ -1,6 +1,6 @@
 /*
    Copyright (c) 2013, The Linux Foundation. All rights reserved.
-   Copyright (c) 2017-2018, The LineageOS Project. All rights reserved.
+   Copyright (c) 2018-2019, The LineageOS Project. All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -28,6 +28,9 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <stdlib.h>
+#include <stdio.h>
+
 #include <android-base/logging.h>
 #include <android-base/properties.h>
 
@@ -48,24 +51,6 @@ void set_rild_libpath(char const *variant)
     property_override("rild.libpath", libpath.c_str());
 }
 
-void cdma_properties(char const *operator_alpha,
-        char const *operator_numeric,
-        char const *default_network,
-        char const *cdma_sub,
-        char const *rild_lib_variant)
-{
-    /* Dynamic CDMA Properties */
-    property_set("ro.cdma.home.operator.alpha", operator_alpha);
-    property_set("ro.cdma.home.operator.numeric", operator_numeric);
-    property_set("ro.telephony.default_network", default_network);
-    property_set("ro.telephony.default_cdma_sub", cdma_sub);
-    set_rild_libpath(rild_lib_variant);
-
-    /* Static CDMA Properties */
-    property_set("ril.subscription.types", "NV,RUIM");
-    property_set("telephony.lteOnCdmaDevice", "1");
-}
-
 void gsm_properties(char const *rild_lib_variant)
 {
     set_rild_libpath(rild_lib_variant);
@@ -73,8 +58,6 @@ void gsm_properties(char const *rild_lib_variant)
     property_set("ro.telephony.default_network", "9");
     property_set("telephony.lteOnGsmDevice", "1");
 }
-
-#define ISMATCH(a, b) (!strncmp((a), (b), PROP_VALUE_MAX))
 
 void init_target_properties()
 {
@@ -84,25 +67,17 @@ void init_target_properties()
 
     std::string bootloader = GetProperty("ro.bootloader", "");
 
-    if (bootloader.find("N9005") == 0) {
-        /* lt03ltexx */
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/lt03ltexx/lt03lte:5.0/LRX21V/N9005XXSGBRI2:user/release-keys");
-        property_override("ro.build.description", "lt03ltexx-user 5.0 LRX21V N9005XXSGBRI2 release-keys");
-        property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-N9005");
-        property_override_dual("ro.product.device", "ro.vendor.product.device", "lt03lte");
-        gsm_properties("gsm");
-    } else if (bootloader.find("N900P") == 0) {
-        /* lt03ltespr - Sprint */
-        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/lt03ltespr/lt03ltespr:5.0/LRX21V/N900PVPSEPL1:user/release-keys");
-        property_override("ro.build.description", "lt03ltespr-user 5.0 LRX21V N900PVPSEPL1 release-keys");
-        property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-N900P");
-        property_override_dual("ro.product.device", "ro.vendor.product.device", "lt03ltespr");
-        cdma_properties("Sprint", "310120", "8", "1", "spr");
+    if (bootloader.find("P607T") == 0) {
+        /* lt03ltetmo */
+        property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/lt03ltetmo/lt03ltetmo:5.1.1/LMY47X/P607TUVSBPL1:user/release-keys");
+        property_override("ro.build.description", "lt03ltetmo-user 5.1.1 LMY47X P607TUVSBPL1 release-keys");
+        property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-P607T");
+        property_override_dual("ro.product.device", "ro.vendor.product.device", "lt03ltetmo");
     } else {
         gsm_properties("gsm");
     }
 
     std::string device = GetProperty("ro.product.device", "");
     LOG(ERROR) << "Found bootloader id " << bootloader <<  " setting build properties for "
-        << device <<  " device" << std::endl;
+            << device <<  " device" << std::endl;
 }

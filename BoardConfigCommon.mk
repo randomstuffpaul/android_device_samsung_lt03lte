@@ -20,9 +20,9 @@ DEVICE_PATH := device/samsung/lt03lte
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-BUILD_FINGERPRINT := samsung/lt03ltexx/lt03lte:5.0/LRX21V/N9005XXSGBRI2:user/release-keys
+BUILD_FINGERPRINT := samsung/lt03ltetmo/lt03ltetmo:5.1.1/LMY47X/P607TUVSBPL1:user/release-keys
 
-TARGET_OTA_ASSERT_DEVICE := lt03lte,lt03ltespr,lt03ltexx
+TARGET_OTA_ASSERT_DEVICE := lt03lte,lt03ltetmo
 
 # Audio
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
