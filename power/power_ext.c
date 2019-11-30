@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 The CyanogenMod Project
- * Copyright (c) 2018 The LineageOS Project
+ * Copyright (c) 2018-2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@
 #define LOG_TAG "PowerHAL_LT03_Ext"
 #include <utils/Log.h>
 
-#define TOUCHKEY_POWER "/sys/class/input/input2/enabled"
 #define SPEN_POWER "/sys/class/input/input3/enabled"
 #define TSP_POWER "/sys/class/input/input4/enabled"
 
@@ -49,6 +48,5 @@ static void sysfs_write(char *path, char *s) {
 void power_set_interactive_ext(int on) {
     ALOGD("%s: %s input devices", __func__, on ? "enabling" : "disabling");
     sysfs_write(TSP_POWER, on ? "1" : "0");
-    sysfs_write(TOUCHKEY_POWER, on ? "1" : "0");
     sysfs_write(SPEN_POWER, on ? "1" : "0");
 }
